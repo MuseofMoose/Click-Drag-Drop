@@ -2,5 +2,10 @@
 
 <%= render 'form' %>
 
+<h4>Current Image </h4>
+<%= image_tag @picture.url %>
+
+<br>
+
 <%= link_to 'Show', @picture %> |
 <%= link_to 'Back', pictures_path %>
