@@ -22,9 +22,9 @@ class MediaUploader < CarrierWave::Uploader::Base
   end
 
   # For working on heroku
-  def cache_dir
-    "#{Rails.root}/tmp/uploads"
-  end
+  # def cache_dir
+  #   "#{Rails.root}/tmp/uploads"
+  # end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
