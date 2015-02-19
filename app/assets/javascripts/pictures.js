@@ -37,13 +37,14 @@ var ready = function(){
 	//Defines the mouse release event.
 	$('body').on('mouseup','tr', function(){
 		// $(this).css('position','relative');
+		if(isClicked===true){
+			$(this).children('.image').children().toggleClass('clicked');
 
-		$(this).children('.image').children().toggleClass('clicked');
-
-		console.log($(this).css('z-index'));
-		isClicked = false;
-		currentItemId = -1;
-		console.log(isClicked);
+			console.log($(this).css('z-index'));
+			isClicked = false;
+			currentItemId = -1;
+			console.log(isClicked);
+		}
 	});
 
 	//Defines mouse movement while clicked.
@@ -51,6 +52,7 @@ var ready = function(){
     	if(isClicked===true){
 	    	var itemInFocus = "tr#" + currentItemId;
     		console.log(itemInFocus);
+
     		$(itemInFocus).css('left', (event.pageX-160));
     		$(itemInFocus).css('top', (event.pageY-160));
    		};
@@ -86,9 +88,10 @@ var ready = function(){
 		$('body').append(new_form);
 	});
 
-	//Resets pictures to default static positioning.
+	//Resets pictures to default static positioning and color formatting.
 	$('body').on('click','#clean_up', function(){
 		$('tr').css('position','static');
+		$('img').removeClass('clicked');
 	});
 
 	// $('body').on('click', '.ajax_trigger_new', function(e){
