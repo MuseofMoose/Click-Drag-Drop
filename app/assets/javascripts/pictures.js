@@ -19,10 +19,17 @@ var ready = function(){
 		// $(this).children().children('img').css("width", "321");
 	});
 
+	var startleft;
+	var starttop;
 
 	//Defines the mouse depress event.
 	$('body').on('mousedown','tr', function(){
 		$(this).css('position','absolute');
+
+		var bound = $(this).position();
+
+		startleft=bound.left;
+		starttop=bound.top;
 
 		//Makes sure the clicked item has the highest z-index.
 		$(this).css('z-index',++z_max);
@@ -31,7 +38,7 @@ var ready = function(){
 
 		isClicked = true;
 		currentItemId = $(this).attr('id');
-		console.log(isClicked);
+		// console.log(isClicked);
 	});
 
 	//Defines the mouse release event.
@@ -40,10 +47,10 @@ var ready = function(){
 		if(isClicked===true){
 			$(this).children('.image').children().toggleClass('clicked');
 
-			console.log($(this).css('z-index'));
+			// console.log($(this).css('z-index'));
 			isClicked = false;
 			currentItemId = -1;
-			console.log(isClicked);
+			// console.log(isClicked);
 		}
 	});
 
@@ -51,7 +58,13 @@ var ready = function(){
     $('body').on('mousemove',function(event) {
     	if(isClicked===true){
 	    	var itemInFocus = "tr#" + currentItemId;
-    		console.log(itemInFocus);
+    		// console.log(itemInFocus);
+
+    		var diffx = (event.pageX+startleft);
+    		console.log(diffx);
+    		var diffy = (event.pageY+starttop);
+    		console.log(diffy);
+
 
     		$(itemInFocus).css('left', (event.pageX-160));
     		$(itemInFocus).css('top', (event.pageY-160));
