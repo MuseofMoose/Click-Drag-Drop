@@ -1,4 +1,4 @@
-== README
+== Click-Drag-Drop
 
 What started out as a test app for uploading images from your own computer turned into a playground for testing drag and drop
 functionality. I dissatisfied with jqueryui's draggable so I decided to build the functionality from scratch. Still a lot of
