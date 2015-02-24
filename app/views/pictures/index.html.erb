@@ -19,12 +19,24 @@
 
 <br>
 
+<div class="new_popup">
+  <% @picture = Picture.new %>
+  <%= form_for @picture, :html => {:multipart => true} do |f| %>
+    <section class: "new_popup_section">
+      <%= f.label nil, 'File Upload', class: 'new_popup_label' %>
+    </section>
+    <%= f.file_field :media, value: 'Choose File' %>
+    <%= f.hidden_field :media_cache %>
+    <br>
+    <%= f.submit 'Upload File', class: 'upload_button' %>
+    <%= f.submit 'Close Tab', class: 'close_button' %>
+  <% end %>
+</div>
 <%#= link_to 'Show', picture %>
 <%#= link_to 'Edit', edit_picture_path(picture) %>
 <%#= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %>
 
 <footer>
 <%= link_to 'New Picture', new_picture_path, class: "new_pic_button" %>
-
 <button type="button" id="clean_up">Clean Up!</button>
 </footer>

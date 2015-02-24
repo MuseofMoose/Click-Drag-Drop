@@ -62,13 +62,6 @@ a:-webkit-any-link{
 	margin-right: 15px;
 }
 
-form.new_picture{
-	background-color: FireBrick;
-	width: 200px;
-	height: 130px;
-	text-align: center;
-}
-
 form div{
 	padding: 10px 0px 0px 0px;
 }
@@ -112,4 +105,33 @@ h1{
 	bottom:0%;
 	z-index: 999999999999999999999999999999999999999999999999999999999999999999999999999999999;
 
+}
+
+.new_popup{
+	position: fixed;
+	background-color: FireBrick;
+	height: 90px;
+	text-align: center;
+	bottom: 5%;
+	left: 5%;
+	border: 4px ridge CornFlowerBlue;
+	visibility: hidden;
+	z-index: 999999999999999999999999999999999999999999999999999999999999999999999999999999999999;
+}
+
+.new_popup_section{
+	padding: 0px 0px 5px 0px;
+}
+
+.new_popup_label{
+	font-size: 25px;
+}
+
+form.new_picture{
+	background-color: FireBrick;
+	text-align: center;
+}
+
+input[type="submit"]{
+	margin: 10px 0px 0px 0px;
 }

@@ -23,18 +23,22 @@ var ready = function(){
 	var starttop;
 
 	//Defines the mouse depress event.
-	$('body').on('mousedown','tr', function(){
-		$(this).css('position','absolute');
+	$('body').on('mousedown','tr', function(event){
 
+		//Calculates the difference between the cursor position and the tr element position.
+		//Used later so that the tr element doesn't snap to the cursor's position.
 		var bound = $(this).position();
+		diffleft=(event.pageX-bound.left);
+		difftop=(event.pageY-bound.top);
 
-		startleft=bound.left;
-		starttop=bound.top;
+		//Changes to absolute positioning in preparation for movement.
+		$(this).css('position','absolute');
 
 		//Makes sure the clicked item has the highest z-index.
 		$(this).css('z-index',++z_max);
 
-		$(this).children('.image').children().toggleClass('clicked');
+		//Adds the 'clicked' class to the element that is currently clicked.
+		$(this).children('.image').children().addClass('clicked');
 
 		isClicked = true;
 		currentItemId = $(this).attr('id');
@@ -45,7 +49,8 @@ var ready = function(){
 	$('body').on('mouseup','tr', function(){
 		// $(this).css('position','relative');
 		if(isClicked===true){
-			$(this).children('.image').children().toggleClass('clicked');
+			//Removes the 'clicked' class to the element once it is no longer being clicked.
+			$(this).children('.image').children().removeClass('clicked');
 
 			// console.log($(this).css('z-index'));
 			isClicked = false;
@@ -60,51 +65,36 @@ var ready = function(){
 	    	var itemInFocus = "tr#" + currentItemId;
     		// console.log(itemInFocus);
 
-    		var diffx = (event.pageX+startleft);
-    		console.log(diffx);
-    		var diffy = (event.pageY+starttop);
-    		console.log(diffy);
-
-
-    		$(itemInFocus).css('left', (event.pageX-160));
-    		$(itemInFocus).css('top', (event.pageY-160));
+    		//Moves the clicked element in synchrony with the mouse cursor.
+    		$(itemInFocus).css('left', (event.pageX-diffleft));
+    		$(itemInFocus).css('top', (event.pageY-difftop));
    		};
    	});
 
-
-
-
+    //Opens the new picture popup menu.
 	$('body').on('click', '.new_pic_button', function(e){
 		e.preventDefault();
 
-		var formstart='<form class="new_picture" id="new_picture" enctype="multipart/form-data" action="/pictures" accept-charset="UTF-8" method="post">'+
-						'<input name="utf8" type="hidden" value="✓">'
+		$('.new_popup').css('visibility','visible');
+	});
 
-   			   var formtitle='<h3 class="formhead">New Picture</h3>'
-
-			   var div1='<div class="field">' +
-				    		'<input type="text" name="picture[title]" id="picture_title">'+
-				  		'</div>'
-
-			   var div2='<div class="field">' +
-				    		'<input type="file" name="picture[media]" id="picture_media">' +
-				    		'<input type="hidden" name="picture[media_cache]" id="picture_media_cache">' +
-				  		'</div>'
-
-			   var div3='<div class="actions">' +
-				    		'<input type="submit" name="commit" value="Create Picture" class="ajax_trigger_new">' +
-				  		'</div>'
-		var formend='</form>'
-
-		var new_form = "<div class='new_popup'>" + formstart + formtitle + div1 + div2 + div3 + formend + "</div>";
-
-		$('body').append(new_form);
+	//Closes the new picture popup menu.
+	$('body').on('click','.close_button', function(e){
+		e.preventDefault();
+		$('.new_popup').css('visibility','hidden');
 	});
 
 	//Resets pictures to default static positioning and color formatting.
 	$('body').on('click','#clean_up', function(){
 		$('tr').css('position','static');
 		$('img').removeClass('clicked');
+	});
+
+
+	$('body').on('click', '.upload_button', function(e){
+		if($('#picture_media').val()===""){
+			e.preventDefault();
+		}
 	});
 
 	// $('body').on('click', '.ajax_trigger_new', function(e){
