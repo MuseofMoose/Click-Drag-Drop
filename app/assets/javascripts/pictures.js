@@ -90,11 +90,19 @@ var ready = function(){
 		$('img').removeClass('clicked');
 	});
 
-
+	//Prevents picture submission if nothing has been uploaded.
 	$('body').on('click', '.upload_button', function(e){
 		if($('#picture_media').val()===""){
 			e.preventDefault();
-		}
+			$(this).closest('form').animate({height:110}, 200);
+			$(this).closest('form').append('<p class="popup_alert">You need to upload a file first!</p>');
+			
+			//An animation to remove the error text and resize the popup. On a 3 second timeout.
+			setTimeout(function(){
+				$('.popup_alert').closest('form').animate({height:90},200);
+				$('.popup_alert').remove();
+			}, 3000);
+		};
 	});
 
 	// $('body').on('click', '.ajax_trigger_new', function(e){

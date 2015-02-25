@@ -110,7 +110,7 @@ h1{
 .new_popup{
 	position: fixed;
 	background-color: FireBrick;
-	height: 90px;
+	height: 90	px;
 	text-align: center;
 	bottom: 5%;
 	left: 5%;
@@ -134,4 +134,10 @@ form.new_picture{
 
 input[type="submit"]{
 	margin: 10px 0px 0px 0px;
+}
+
+.popup_alert{
+	margin: 5px 0px 0px 0px;
+	font-weight: bold;
+	color: darkorange;
 }
