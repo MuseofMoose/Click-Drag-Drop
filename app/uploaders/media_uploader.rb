@@ -4,7 +4,7 @@ class MediaUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
@@ -16,10 +16,32 @@ class MediaUploader < CarrierWave::Uploader::Base
      "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  # For working on heroku
+  # For working on heroku, temporarily
  def cache_dir
    "#{Rails.root}/tmp/uploads"
  end
+
+end
+
+  CarrierWave.configure do |config|
+    config.fog_credentials = {
+      provider: 'AWS',
+      aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+      region: ENV['S3_REGION']
+    }
+
+    if Rails.env.test? || Rails.env.development?
+      config.storage = :file
+      config.enable_processing = false
+      config.root = "#{Rails.root}/tmp"
+    else
+      config.storage = :fog
+    end
+
+    config.cache_dir = "#{Rails.root}/tmp/uploads"
+    config.fog_directory = ENV['S3_BUCKET_NAME']
+  end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
