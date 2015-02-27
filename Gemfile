@@ -10,9 +10,10 @@ end
 
 group :production do
 	gem 'pg'
-	gem 'unf'
-	gem 'fog'
 end
+
+gem 'unf'
+gem 'fog'
 
 
 # Use SCSS for stylesheets
