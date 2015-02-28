@@ -1,8 +1,8 @@
 CarrierWave.configure do |config|
   config.fog_credentials = {
     provider: 'AWS',
-    aws_access_key_id: 'AKIAJ4QVCEXHEINCIZMA',
-    aws_secret_access_key: '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',
+    aws_access_key_id: 'AKIAJSDSOVLUOAEWAN6Q',
+    aws_secret_access_key: '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',
     region: 'us-west-2',
   }
 
@@ -15,5 +15,5 @@ CarrierWave.configure do |config|
   end
 
   config.cache_dir = "#{Rails.root}/tmp/uploads"
-  config.fog_directory = 'crapgur2'
+  config.fog_directory = 'crapgur'
 end
