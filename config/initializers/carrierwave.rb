@@ -3,7 +3,7 @@ CarrierWave.configure do |config|
     provider: 'AWS',
     aws_access_key_id: 'AKIAJSDSOVLUOAEWAN6Q',
     aws_secret_access_key: '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',
-    region: 'us-west-2',
+    region: 'us-east-1',
   }
 
   if Rails.env.test? || Rails.env.development?
