@@ -3,7 +3,7 @@ CarrierWave.configure do |config|
     provider: 'AWS',
     aws_access_key_id: 'AKIAJSDSOVLUOAEWAN6Q',
     aws_secret_access_key: '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',
-    region: 'us-east-1',
+    region: 'us-west-2',
   }
 
   if Rails.env.test? || Rails.env.development?
@@ -15,5 +15,5 @@ CarrierWave.configure do |config|
   end
 
   config.cache_dir = "#{Rails.root}/tmp/uploads"
-  config.fog_directory = 'crapgur'
+  config.fog_directory = 'crapgur3'
 end
