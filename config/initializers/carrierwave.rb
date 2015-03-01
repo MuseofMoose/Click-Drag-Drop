@@ -9,6 +9,7 @@ CarrierWave.configure do |config|
     aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
     aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
     region: ENV['S3_REGION']
+    #lkjhsdkfghsdlfkjshdf
   }
     config.fog_directory = 'crapgur3'
   end
