@@ -1,16 +1,14 @@
 CarrierWave.configure do |config|
   if Rails.env.test? || Rails.env.development?
-  	p 'local'
     config.storage = :file
     config.enable_processing = false
   else
-  	p 'heroku'
     config.storage = :fog
     config.fog_credentials = {
     provider: 'AWS',
-    # aws_access_key_id: 'AKIAJSDSOVLUOAEWAN6Q',
-    # aws_secret_access_key: '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',
-    region: 'us-west-2',
+    aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+    aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+    region: ENV['S3_REGION']
   }
     config.fog_directory = 'crapgur3'
   end
