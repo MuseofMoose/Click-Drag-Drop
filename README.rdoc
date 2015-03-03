@@ -4,7 +4,8 @@ What started out as a test app for uploading images from your own computer turne
 functionality. I was dissatisfied with jqueryui's draggable so I decided to build the functionality from scratch. Still a lot of
 work to do, but the basic functionality is there.
 
-<ul>Features to build out/fix:
+Features to build out/fix:
+<ul>
   <li>Background objects should *not* automatically move when a clicked element gets detached.
   <li>Drop functionality. Would like images to get slotted back into the table depending on where they are dropped.
   <li>Cursor out of view problem. If you drag an image and your cursor goes off the page view, the dragged element
